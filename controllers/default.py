@@ -26,7 +26,7 @@ def sugestoes():
         import requests
         import simplejson as sj
         resp = requests.post('https://www.google.com/recaptcha/api/siteverify',
-                             data=dict(secrect='6LeLalQUAAAAALz8sYW0SAiEsFYz4wbQ79P28FwA',
+                             data=dict(secrect='...',
                                        reponse=captcha_resp,
                                        # remoteip=request.env['REMOTE_ADDR']
                                        )

@@ -1,0 +1,9 @@
+{{extend 'layout.html'}}
+<div class="row">
+    <div class="col-md-9">
+        {{=LOAD(c='content', f='list_articles.load')}}
+    </div>
+    <div class="col-md-3">
+      {{=LOAD(c='content', f='list_categories.load', ajax=True)}}
+    </div>
+</div>

@@ -1,0 +1,10 @@
+{{extend 'layout.html'}}
+{{block head}}
+    <script src="{{=URL('static', 'js/medium-editor-master/dist/js/medium-editor.js')}}"></script>
+    <link rel="stylesheet" href="{{=URL('static', 'js/medium-editor-master/dist/css/medium-editor.css')}}">
+    <link rel="stylesheet" href="{{=URL('static', 'js/medium-editor-master/dist/css/themes/default.css')}}">
+{{end head}}
+{{=form}}
+<div class="editable"></div>
+
+<script>var editor = new MediumEditor('.editable');</script>

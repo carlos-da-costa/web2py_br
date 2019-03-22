@@ -1,0 +1,10 @@
+{{extend 'layout.html'}}
+<h1> {{=category.title}}</h1>
+<div class="row">
+    {{for article in articles.render():}}
+        <div class="col-md-4 dapibus">
+            <a href="{{=URL(c='content', f='article', vars={'id':article.identifier})}}"><h2>{{=article.title}}</h2></a>
+           <p>{{=XML(article.body[0:100])}}
+        </div>
+    {{pass}}
+</div>

@@ -1,0 +1,429 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>WEBPY BR</title>
+<link href="{{=URL('static','theme/css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all">
+<link href="{{=URL('static','theme/css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Graphic Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+<!--<script src="{{=URL('static','theme/js/jquery.min.js')}}"></script>-->
+	<link rel="stylesheet" href="{{=URL('static','css/web2py-bootstrap3.css')}}"/>
+    <link rel="stylesheet" href="{{=URL('static','css/custom.css')}}"/>
+    <link rel="shortcut icon" href="{{=URL('static','images/favicon.ico')}}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{=URL('static','images/favicon.png')}}">
+    <!-- All JavaScript at the bottom, except for Modernizr which enables
+         HTML5 elements & feature detects -->
+    <script src="{{=URL('static','js/modernizr-2.8.3.min.js')}}"></script>
+    <!--[if lt IE 9]>
+        <script src="{{=URL('static','js/respond-1.4.2.min.js')}}"></script>
+	   <![endif]-->
+{{include 'web2py_ajax.html'}} <!-- this includes jquery.js, calendar.js/.css and web2py.js -->
+{{block head}}{{end}}
+<script>
+		$(document).ready(function () {
+		    size_li = $("#myList li").size();
+		    x=3;
+		    $('#myList li:lt('+x+')').show();
+		    $('#loadMore').click(function () {
+		        x= (x+1 <= size_li) ? x+1 : size_li;
+		        $('#myList li:lt('+x+')').show();
+		    });
+		    $('#showLess').click(function () {
+		        x=(x-1<0) ? 1 : x-1;
+		        $('#myList li').not(':lt('+x+')').hide();
+		    });
+		});
+	</script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+<body>
+{{if auth.has_membership('admin'):}}
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          {{=response.logo or ''}}
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            {{='auth' in globals() and auth.navbar('Welcome',mode='dropdown') or ''}}
+          </ul>
+          {{if response.menu:}}
+          {{=MENU(response.menu, _class='nav navbar-nav',li_class='dropdown',ul_class='dropdown-menu')}}
+          {{pass}}
+        </div>
+      </div>
+    </nav>
+{{pass}}
+
+<!-- header -->
+<div class="banner">
+	<div class="container">
+		<div class="header">
+			<div class="logo">
+				<a href="index.html"><img src="{{=URL('static','/images/w2pbr_logo.png')}}" class="logo" alt="" height="80px" /></a>
+			</div>
+			<!--<div class="header-right">-->
+				<!--<ul>-->
+					<!--<li><a href="#"><i class="fb"> </i></a></li>-->
+					<!--<li><a href="#"><i class="twt"> </i></a></li>-->
+				<!--<li>-->
+				<!--<div class="search2">-->
+					<!--<form>-->
+						<!--<input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}">-->
+						<!--<input type="submit" value="">-->
+					<!--</form>-->
+				<!--</div></li>-->
+					<!--<div class="clearfix"></div>-->
+				<!--</ul>-->
+					<!---->
+			<!--</div>-->
+				<div class="clearfix"> </div>
+			</div>
+				<div class="head-nav">
+					<span class="menu"> </span>
+						<ul class="cl-effect-15">
+						<li class="active"><a href="{{=URL(c='default', f='index')}}">HOME</a></li>
+							<li><a href="{{=URL(c='content', f='list_category', vars={'category':'artigos'})}}" data-hover="ARTIGOS">ARTIGOS</a></li>
+							<li><a href="{{=URL(c='default', f='sugestoes')}}" data-hover="SUGESTÕES">SUGESTÕES</a></li>
+							<!--<li><a href="photos.html" data-hover="PHOTOS">PHOTOS</a></li>-->
+							<!--<li><a href="404.html" data-hover="ARCHIVES">ARCHIVES</a></li>-->
+							<!--<li><a href="contact.html" data-hover="CONTACT">CONTACT</a></li>-->
+
+								<div class="clearfix"> </div>
+						</ul>
+
+				</div>
+
+						<!-- script-for-nav -->
+					<script>
+						$( "span.menu" ).click(function() {
+						  $( ".head-nav ul" ).slideToggle(300, function() {
+							// Animation complete.
+						  });
+						});
+					</script>
+				<!-- script-for-nav --> 					 
+	</div> 
+</div>
+<!-- header -->
+
+<!-- content -->
+<div class="content"  style="min-height:77vh">
+
+	<div class="container">
+        {{include}}
+	 <!--<div class="load_more">	-->
+			     <!--<ul id="myList">-->
+			        <!--&lt;!&ndash; These are our grid blocks &ndash;&gt;-->
+			        <!--<li>-->
+						<!--<div class="l_g">-->
+							<!--<div class="col-md-3 praesent">-->
+								<!--<div class="l_g_r">-->
+									<!--<div class="dapibus">-->
+										<!--<h2>Praesent dapibusneque id cursus faucioibus tortor neque tiegetas augue</h2>-->
+										<!--<p class="adm">Posted by <a href="#">Admin</a>  |  7 days ago</p>-->
+										<!--<a href="details.html"><img src="{{=URL('static','theme/images/img1.jpg')}}" class="img-responsive" alt=""></a>-->
+										<!--<p>Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate. </p>-->
+										<!--<a href="details.html" class="link">Read More</a>-->
+									<!--</div>-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="col-md-3 integ">-->
+								<!--<div class="l_g_r">-->
+									<!--<div class="integer">-->
+										<!--<h3>Integer vitae libero ac risus egestas</h3>-->
+										<!--<p class="adm">Posted by <a href="#">Admin</a>  |  7 days ago</p>-->
+										<!--<a href="details.html"><img src="{{=URL('static','theme/images/img3.jpg')}}" class="img-responsive" alt=""></a>-->
+										<!--<p>Sed adipiscing ornare risus. Morbi est est, blandit sit amet, sagittis vel, euismod vel ipsum dolor.</p>-->
+										<!--<a href="details.html" class="link">Read More</a>-->
+									<!--</div>-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="col-md-3 integ">-->
+								<!--<div class="l_g_r">-->
+									<!--<div class="dapibus">-->
+										<!--<h3>Integer vitae libero risus egestas</h3>-->
+										<!--<p class="adm">Posted by <a href="#">Admin</a>  |  7 days ago</p>-->
+										<!--<a href="details.html"><img src="{{=URL('static','theme/images/2222.jpg')}}" class="img-responsive" alt=""></a>-->
+										<!--<p>Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilis</p>-->
+										<!--<a href="details.html" class="link">Read More</a>-->
+									<!--</div>-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="col-md-3 integ">-->
+								<!--<div class="l_g_r">-->
+									<!--<div class="posts">-->
+										<!--<h4>Recent posts</h4>-->
+										<!--<h6><a href="#">Aliquam tincidunt mauris</a></h6>-->
+										<!--<h6><a href="#">Vestibulum auctor lipsum</a></h6>-->
+										<!--<h6><a href="#">Nunc dignissim risus</a></h6>-->
+										<!--<h6><a href="#">Cras ornare tristiqu</a></h6>-->
+									<!--</div>-->
+									<!--<div class="comments">-->
+										<!--<h4>Recent Comments</h4>-->
+										<!--<h6><a href="#">Amada Doe <span>on</span> Hello World!</a></h6>-->
+										<!--<h6><a href="#">Peter Doe <span>on</span> Photography</a></h6>-->
+										<!--<h6><a href="#">Steve Roberts <span>on</span> HTML5/CSS3</a></h6>-->
+										<!--<h6><a href="#">Doe Peter<span>on</span> Photography</a></h6>-->
+									<!--</div>-->
+									<!--<div class="archievs">-->
+										<!--<h4>Archives</h4>-->
+										<!--<h6><a href="#">October 2013</a></h6>-->
+										<!--<h6><a href="#">September 2013</a></h6>-->
+										<!--<h6><a href="#">August 2013</a></h6>-->
+										<!--<h6><a href="#">July 2013</a></h6>-->
+									<!--</div>-->
+
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="clearfix"></div>-->
+						<!--</div>-->
+					<!--</li>-->
+					 <!--<li>-->
+						<!--<div class="l_g">-->
+							<!--<div class="col-md-3 praesent">-->
+								<!--<div class="l_g_r">-->
+									<!--<div class="dapibus">-->
+										<!--<h3>CURSUS FAUCIO</h3>-->
+										<!--<p class="adm">Posted by <a href="#">Admin</a>  |  7 days ago</p>-->
+										<!--<a href="details.html"><img src="{{=URL('static','theme/images/img2.jpg')}}" class="img-responsive" alt=""></a>-->
+										<!--<p>Phasellus ultrices nulla. </p>-->
+										<!--<a href="details.html" class="link">Read More</a>-->
+									<!--</div>-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="col-md-3 integ">-->
+								<!--<div class="l_g_r">-->
+									<!--<div class="integer">-->
+										<!--<h3>Aliquam tincidunt mauris eu risus</h3>-->
+										<!--<p class="adm">Posted by <a href="#">Admin</a>  |  7 days ago</p>-->
+										<!--<p>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat.</p>-->
+										<!--<a href="details.html" class="link">Read More</a>-->
+									<!--</div>-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="col-md-3 integ">-->
+								<!--<div class="l_g_r">-->
+									<!--<div class="lorem">-->
+										<!--<h3>Lorem ipsum dolor</h3>-->
+										<!--<p class="adm">Posted by <a href="#">Admin</a>  |  7 days ago</p>-->
+										<!--<iframe src="//player.vimeo.com/video/78517603" width="220px" height="" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>-->
+										<!--<p>Pellentesque odio nisi, euismod in, pharetra a, ultricies in.</p>-->
+										<!--<a href="details.html" class="link">Read More</a>-->
+									<!--</div>-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="col-md-3 integ">-->
+								<!--<div class="l_g_r">-->
+									<!--<div class="categories">-->
+										<!--<h4>Categories</h4>-->
+										<!--<h6><a href="#">Vivamus vestibulum nulla</a></h6>-->
+										<!--<h6><a href="#">Integer vitae libero ac risus e</a></h6>-->
+										<!--<h6><a href="#">Vestibulum commo</a></h6>-->
+										<!--<h6><a href="#">Cras iaculis ultricies</a></h6>-->
+									<!--</div>-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="clearfix"></div>-->
+						<!--</div>-->
+					<!--</li>-->
+			        <!--&lt;!&ndash;&#45;&#45;//-&ndash;&gt;-->
+					 <!--<li>-->
+						<!--<div class="l_g">-->
+							<!--<div class="col-md-3 praesent">-->
+								<!--<div class="l_g_r">-->
+									<!--<div class="dapibus">-->
+										<!--<h2>Praesent dapibusneque id cursus faucioibus tortor neque tiegetas augue</h2>-->
+										<!--<p class="adm">Posted by <a href="#">Admin</a>  |  7 days ago</p>-->
+										<!--<a href="details.html"><img src="{{=URL('static','theme/images/img10.jpg')}}" class="img-responsive" alt=""></a>-->
+										<!--<p>Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate. </p>-->
+										<!--<a href="details.html" class="link">Read More</a>-->
+									<!--</div>-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="col-md-3 integ">-->
+								<!--<div class="l_g_r">-->
+									<!--<div class="vitae">-->
+										<!--<h3>Integer vitae libero risus egestas</h3>-->
+										<!--<p class="adm">Posted by <a href="#">Admin</a>  |  7 days ago</p>-->
+										<!--<a href="details.html"><img src="images/img4.jpg" class="img-responsive" alt=""></a>-->
+										<!--<p>Sed adipiscing ornare risus. Morbi est est, blandit sit amet</p>-->
+										<!--<a href="details.html" class="link">Read More</a>-->
+									<!--</div>-->
+
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="col-md-3 praesent">-->
+								<!--<div class="l_g_r">-->
+									<!--<div class="integer">-->
+										<!--<h3>Praesent dapibusn id cursus</h3>-->
+										<!--<p class="adm">Posted by <a href="#">Admin</a>  |  7 days ago</p>-->
+										<!--<a href="details.html"><img src="images/img11.jpg" class="img-responsive" alt=""></a>-->
+										<!--<p>Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate. </p>-->
+										<!--<a href="details.html" class="link">Read More</a>-->
+									<!--</div>-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="col-md-3 integ">-->
+								<!--<div class="l_g_r">-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="clearfix"></div>-->
+						<!--</div>-->
+					<!--</li>-->
+			        <!--&lt;!&ndash;&#45;&#45;//-&ndash;&gt;-->
+			          <!--<li>-->
+						<!--<div class="l_g">-->
+							<!--<div class="col-md-3 praesent">-->
+								<!--<div class="l_g_r">-->
+									<!--<div class="dapibus">-->
+										<!--<h2>Praesent dapibusneque id cursus faucioibus tortor neque tiegetas augue</h2>-->
+										<!--<p class="adm">Posted by <a href="#">Admin</a>  |  7 days ago</p>-->
+										<!--<a href="details.html"><img src="images/img13.jpg" class="img-responsive" alt=""></a>-->
+										<!--<p>Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate. </p>-->
+										<!--<a href="details.html" class="link">Read More</a>-->
+									<!--</div>-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="col-md-3 integ">-->
+								<!--<div class="l_g_r">-->
+									<!--<div class="vitae">-->
+										<!--<h3>Integer vitae libero risus egestas</h3>-->
+										<!--<p class="adm">Posted by <a href="#">Admin</a>  |  7 days ago</p>-->
+										<!--<a href="details.html"><img src="images/img14.jpg" class="img-responsive" alt=""></a>-->
+										<!--<p>Sed adipiscing ornare risus. Morbi est est, blandit sit amet</p>-->
+										<!--<a href="details.html" class="link">Read More</a>-->
+									<!--</div>-->
+
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="col-md-3 praesent">-->
+								<!--<div class="l_g_r">-->
+									<!--<div class="integer">-->
+										<!--<h3>Praesent dapibusn id cursus</h3>-->
+										<!--<p class="adm">Posted by <a href="#">Admin</a>  |  7 days ago</p>-->
+										<!--<a href="details.html"><img src="images/img15.jpg" class="img-responsive" alt=""></a>-->
+										<!--<p>Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate. </p>-->
+										<!--<a href="details.html" class="link">Read More</a>-->
+									<!--</div>-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="col-md-3 integ">-->
+								<!--<div class="l_g_r">-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="clearfix"></div>-->
+						<!--</div>-->
+					<!--</li>-->
+					 <!--<li>-->
+						<!--<div class="l_g">-->
+							<!--<div class="col-md-3 praesent">-->
+								<!--<div class="l_g_r">-->
+									<!--<div class="dapibus">-->
+										<!--<h2>Praesent dapibusneque id cursus faucioibus tortor neque tiegetas augue</h2>-->
+										<!--<p class="adm">Posted by <a href="#">Admin</a>  |  7 days ago</p>-->
+										<!--<a href="details.html"><img src="images/img16.jpg" class="img-responsive" alt=""></a>-->
+										<!--<p>Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate. </p>-->
+										<!--<a href="details.html" class="link">Read More</a>-->
+									<!--</div>-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="col-md-3 integ">-->
+								<!--<div class="l_g_r">-->
+									<!--<div class="vitae">-->
+										<!--<h3>Integer vitae libero risus egestas</h3>-->
+										<!--<p class="adm">Posted by <a href="#">Admin</a>  |  7 days ago</p>-->
+										<!--<a href="details.html"><img src="images/img17.jpg" class="img-responsive" alt=""></a>-->
+										<!--<p>Sed adipiscing ornare risus. Morbi est est, blandit sit amet</p>-->
+										<!--<a href="details.html" class="link">Read More</a>-->
+									<!--</div>-->
+
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="col-md-3 praesent">-->
+								<!--<div class="l_g_r">-->
+									<!--<div class="integer">-->
+										<!--<h3>Praesent dapibusn id cursus</h3>-->
+										<!--<p class="adm">Posted by <a href="#">Admin</a>  |  7 days ago</p>-->
+										<!--<a href="details.html"><img src="images/img5.jpg" class="img-responsive" alt=""></a>-->
+										<!--<p>Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate. </p>-->
+										<!--<a href="details.html" class="link">Read More</a>-->
+									<!--</div>-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="col-md-3 integ">-->
+								<!--<div class="l_g_r">-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="clearfix"></div>-->
+						<!--</div>-->
+					<!--</li>-->
+					<!--<div class="clearfix"></div>-->
+					 <!--&lt;!&ndash;&#45;&#45;//-&ndash;&gt;-->
+			      <!--</ul>-->
+				  <!--<div id="loadMore">Load more</div>-->
+	<!--<div id="showLess">Show less</div>-->
+
+			    <!--</div>-->
+	</div>
+</div>
+<!-- content -->	
+<!-- footer -->
+	<div class="footer">
+		<div class="container">
+			<div class="col-md-3 copy">
+				<div class="top1">
+					<i class="ham"></i>
+				</div>
+				<div class="top2">
+					<h6>Copyrights © 2018</h6>
+					<p>All rights reserved</p>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="col-md-3 copy">
+				<div class="top1">
+					<i class="men"></i>
+				</div>
+				<div class="top2">
+					<h6>Template by: </h6>
+					<p><a href="http://w3layouts.com/">W3layouts</a></p>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="col-md-3 copy">
+				<div class="top1">
+					<i class="app"></i>
+				</div>
+				<div class="top2">
+                    <h6>Patrocinado por:</h6>
+                    <p><a href="http://yamachine.com.br">Yamachine</a></p>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="col-md-3 copy">
+				<div class="top1">
+					<i class="lik"></i>
+				</div>
+				<div class="top2">
+					<h6>Powered by </h6>
+					<p><a href="http://web2py.com"><img src="{{=URL('static', 'images/Stickers8.png')}}"></a></p>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- footer -->
+</body>
+</html>

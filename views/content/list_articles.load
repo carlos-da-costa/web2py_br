@@ -1,0 +1,13 @@
+{{from gluon.tools import prettydate}}
+<div class="row">
+    {{for article in articles.render():}}
+        <div class="col-md-4">
+            <div class="dapibus">
+                <a href="{{=URL(c='content', f='article', vars={'id':article.identifier})}}"><h2>{{=article.title}}</h2></a>
+                <p>{{=article.created_by}}
+                <p>{{=prettydate(article.created_on, T)}}
+                <p>{{=XML(article.body[0:100])}}
+            </div>
+        </div>
+    {{pass}}
+</div>

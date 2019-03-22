@@ -1,0 +1,245 @@
+timestamp: 2017-05-03T00:39:32.797502
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2017-05-03T00:39:32.804671
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2017-05-03T00:39:32.811396
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2017-05-03T00:39:32.816627
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2017-05-03T00:39:32.822633
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2017-05-03T00:39:32.828718
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+success!
+success!
+success!
+success!
+timestamp: 2018-03-23T17:03:03.489786
+CREATE TABLE suggestion(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    body TEXT,
+    name CHAR(512),
+    email CHAR(512),
+    created TIMESTAMP
+);
+success!
+success!
+success!
+success!
+success!
+timestamp: 2018-03-24T17:14:57.272866
+ALTER TABLE "suggestion" ADD "likes" INTEGER;
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2018-03-28T21:29:44.127274
+CREATE TABLE "wiki_page"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "slug" CHAR(512),
+    "title" CHAR(255) UNIQUE,
+    "body" TEXT NOT NULL,
+    "tags" TEXT,
+    "can_read" TEXT,
+    "can_edit" TEXT,
+    "changelog" CHAR(512),
+    "html" TEXT,
+    "render" CHAR(512),
+    "is_active" CHAR(1),
+    "created_on" TIMESTAMP,
+    "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "modified_on" TIMESTAMP,
+    "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2018-03-28T21:29:44.341885
+CREATE TABLE "wiki_tag"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "name" CHAR(512),
+    "wiki_page" INTEGER REFERENCES "wiki_page" ("id") ON DELETE CASCADE  ,
+    "is_active" CHAR(1),
+    "created_on" TIMESTAMP,
+    "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "modified_on" TIMESTAMP,
+    "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2018-03-28T21:29:44.785072
+CREATE TABLE "wiki_media"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "wiki_page" INTEGER REFERENCES "wiki_page" ("id") ON DELETE CASCADE  ,
+    "title" CHAR(512),
+    "filename" CHAR(512),
+    "is_active" CHAR(1),
+    "created_on" TIMESTAMP,
+    "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "modified_on" TIMESTAMP,
+    "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2018-03-28T21:38:18.301331
+CREATE TABLE "category"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "title" CHAR(512),
+    "identifier" CHAR(512)
+);
+success!
+timestamp: 2018-03-28T21:38:18.442097
+CREATE TABLE "article"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "title" CHAR(512),
+    "body" TEXT
+);
+success!
+timestamp: 2018-03-28T21:45:43.456894
+ALTER TABLE "article" ADD "category" INTEGER REFERENCES "category" ("id") ON DELETE CASCADE  ;
+success!
+timestamp: 2018-03-28T22:31:36.596268
+ALTER TABLE "article" ADD "identifier" CHAR(512);
+success!
+timestamp: 2018-03-28T22:42:01.977263
+ALTER TABLE "auth_user" ADD "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+timestamp: 2018-03-28T22:42:02.127065
+ALTER TABLE "auth_user" ADD "is_active" CHAR(1);
+timestamp: 2018-03-28T22:42:02.222769
+ALTER TABLE "auth_user" ADD "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+timestamp: 2018-03-28T22:42:02.329276
+ALTER TABLE "auth_user" ADD "created_on" TIMESTAMP;
+timestamp: 2018-03-28T22:42:02.427013
+ALTER TABLE "auth_user" ADD "modified_on" TIMESTAMP;
+success!
+timestamp: 2018-03-28T22:42:02.553401
+ALTER TABLE "auth_group" ADD "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+timestamp: 2018-03-28T22:42:02.721707
+ALTER TABLE "auth_group" ADD "is_active" CHAR(1);
+timestamp: 2018-03-28T22:42:02.804738
+ALTER TABLE "auth_group" ADD "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+timestamp: 2018-03-28T22:42:02.882621
+ALTER TABLE "auth_group" ADD "created_on" TIMESTAMP;
+timestamp: 2018-03-28T22:42:02.965096
+ALTER TABLE "auth_group" ADD "modified_on" TIMESTAMP;
+success!
+timestamp: 2018-03-28T22:42:03.068241
+ALTER TABLE "auth_membership" ADD "is_active" CHAR(1);
+timestamp: 2018-03-28T22:42:03.171389
+ALTER TABLE "auth_membership" ADD "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+timestamp: 2018-03-28T22:42:03.260284
+ALTER TABLE "auth_membership" ADD "created_on" TIMESTAMP;
+timestamp: 2018-03-28T22:42:03.349205
+ALTER TABLE "auth_membership" ADD "modified_on" TIMESTAMP;
+timestamp: 2018-03-28T22:42:03.438192
+ALTER TABLE "auth_membership" ADD "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+success!
+timestamp: 2018-03-28T22:42:03.537997
+ALTER TABLE "auth_permission" ADD "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+timestamp: 2018-03-28T22:42:03.663740
+ALTER TABLE "auth_permission" ADD "is_active" CHAR(1);
+timestamp: 2018-03-28T22:42:03.760336
+ALTER TABLE "auth_permission" ADD "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+timestamp: 2018-03-28T22:42:03.865768
+ALTER TABLE "auth_permission" ADD "created_on" TIMESTAMP;
+timestamp: 2018-03-28T22:42:03.988242
+ALTER TABLE "auth_permission" ADD "modified_on" TIMESTAMP;
+success!
+timestamp: 2018-04-10T00:03:53.829921
+ALTER TABLE "auth_event" ADD "is_active" CHAR(1);
+timestamp: 2018-04-10T00:03:53.923064
+ALTER TABLE "auth_event" ADD "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+timestamp: 2018-04-10T00:03:54.000912
+ALTER TABLE "auth_event" ADD "created_on" TIMESTAMP;
+timestamp: 2018-04-10T00:03:54.125447
+ALTER TABLE "auth_event" ADD "modified_on" TIMESTAMP;
+timestamp: 2018-04-10T00:03:54.234268
+ALTER TABLE "auth_event" ADD "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+success!
+timestamp: 2018-04-10T00:03:54.358180
+ALTER TABLE "auth_cas" ADD "is_active" CHAR(1);
+timestamp: 2018-04-10T00:03:54.458304
+ALTER TABLE "auth_cas" ADD "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+timestamp: 2018-04-10T00:03:54.559728
+ALTER TABLE "auth_cas" ADD "modified_on" TIMESTAMP;
+timestamp: 2018-04-10T00:03:54.634123
+ALTER TABLE "auth_cas" ADD "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+success!
+timestamp: 2018-04-10T00:03:54.791986
+ALTER TABLE "suggestion" ADD "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+timestamp: 2018-04-10T00:03:54.893709
+ALTER TABLE "suggestion" ADD "is_active" CHAR(1);
+timestamp: 2018-04-10T00:03:55.000630
+ALTER TABLE "suggestion" ADD "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+timestamp: 2018-04-10T00:03:55.091867
+ALTER TABLE "suggestion" ADD "created_on" TIMESTAMP;
+timestamp: 2018-04-10T00:03:55.175002
+ALTER TABLE "suggestion" ADD "modified_on" TIMESTAMP;
+success!
+timestamp: 2018-04-10T00:03:55.258243
+ALTER TABLE "category" ADD "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+timestamp: 2018-04-10T00:03:55.341253
+ALTER TABLE "category" ADD "is_active" CHAR(1);
+timestamp: 2018-04-10T00:03:55.416359
+ALTER TABLE "category" ADD "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+timestamp: 2018-04-10T00:03:55.494162
+ALTER TABLE "category" ADD "created_on" TIMESTAMP;
+timestamp: 2018-04-10T00:03:55.583133
+ALTER TABLE "category" ADD "modified_on" TIMESTAMP;
+success!
+timestamp: 2018-04-10T00:03:55.714946
+ALTER TABLE "article" ADD "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+timestamp: 2018-04-10T00:03:55.796021
+ALTER TABLE "article" ADD "is_active" CHAR(1);
+timestamp: 2018-04-10T00:03:55.889423
+ALTER TABLE "article" ADD "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
+timestamp: 2018-04-10T00:03:55.971907
+ALTER TABLE "article" ADD "created_on" TIMESTAMP;
+timestamp: 2018-04-10T00:03:56.049792
+ALTER TABLE "article" ADD "modified_on" TIMESTAMP;
+success!

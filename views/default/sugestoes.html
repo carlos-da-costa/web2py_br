@@ -1,0 +1,59 @@
+{{extend 'layout.html'}}
+{{from gluon.tools import prettydate}}
+<div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4">
+    </div>
+</div>
+<div class="row dapibus">
+    <div class="col-md-6">
+        <h1 class="text-center">
+              Bem vindo ao WEB2PY BR!
+        </h1>
+        <blockquote >
+            <p>
+                Estamos começando um novo portal brasileiro do Web2py.
+            </p>
+            <p>
+                Esse maravilhoso framework pelo qual todo que conhece se apaixona.
+            </p>
+            <p>
+                Colabore dando sua sujestão sobre o que você gostaria de ver num portal brasileiro de Web2py!
+            </p>
+            <footer>Equipe <cite title="WEB2PY BR">WEB2PY BR</cite></footer>
+        </blockquote>
+    </div>
+    <div class="col-md-6">
+        {{=form}}
+    </div>
+</div>
+{{if len(suggestions) > 0:}}
+<br/>
+    <h3>Sugestões enviadas:</h3>
+    {{for suggestion in suggestions:}}
+        <br/>
+        <div class="row dapibus">
+            <div class="col-md-12">
+                <blockquote >
+                    {{=suggestion.body}}
+                    <footer><cite>{{=suggestion.name}}</cite> em {{=prettydate(suggestion.created, T)}}</footer>
+                    
+                </blockquote>
+            </div>
+        </div>
+    {{pass}}
+{{pass}}
+
+
+<script>
+    $(".like-it").on("click", function(){
+        id = $(this).data("id");
+        $.getJSON("{{=URL(f='like_it')}}",data={post_id:id}, function (data){
+            console.log(data);
+        })
+    });
+</script>

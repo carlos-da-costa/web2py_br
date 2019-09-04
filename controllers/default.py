@@ -21,7 +21,7 @@ def sugestoes():
 
     def validation(form):
         captcha_resp = request.vars['g-recaptcha-response']
-        print captcha_resp
+        print (captcha_resp)
 
         import requests
         import simplejson as sj
@@ -33,7 +33,7 @@ def sugestoes():
                              )
 
         st = sj.loads(resp.text)
-        print st
+        print (st)
         if st['success'] == False:
             form.errors.body = ''
             response.flash = 'Por favor, mostre que você não é um robô ;)'

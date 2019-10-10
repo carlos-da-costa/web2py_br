@@ -21,18 +21,17 @@ def sugestoes():
 
     def validation(form):
         captcha_resp = request.vars['g-recaptcha-response']
-
         import requests
         import simplejson as sj
         resp = requests.post('https://www.google.com/recaptcha/api/siteverify',
-                             data=dict(secrect='6LeLalQUAAAAALz8sYW0SAiEsFYz4wbQ79P28FwA',
+                             data=dict(secrect='...',
                                        reponse=captcha_resp,
                                        # remoteip=request.env['REMOTE_ADDR']
                                        )
                              )
 
         st = sj.loads(resp.text)
-        
+
         if st['success'] == False:
             form.errors.body = ''
             response.flash = 'Por favor, mostre que você não é um robô ;)'

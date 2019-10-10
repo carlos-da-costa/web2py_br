@@ -19,6 +19,6 @@ db.define_table('category',
 db.define_table('article',
                 Field('title'),
                 Field('identifier'),
-                Field('body', 'text', represent=lambda v, r: XML(markdown2.markdown(v)) if v else ''),
+                Field('body', 'text', represent=lambda v, r: XML(markdown2.markdown(v[:100])) if v else ''),
                 Field('category', db.category)
                 )

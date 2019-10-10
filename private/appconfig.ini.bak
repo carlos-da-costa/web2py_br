@@ -13,7 +13,6 @@ names = localhost:*, 127.0.0.1:*, *:*, *
 ; db configuration
 [db]
 uri       = sqlite://storage.sqlite
-#uri       = postgres2:psycopg2://sa:Kp1T08aL7G@hubtecv1.coq9nfjyo2tl.us-east-2.rds.amazonaws.com:5432/web2pybr
 migrate   = true
 pool_size = 10 ; ignored for sqlite
 
@@ -28,4 +27,4 @@ ssl    = true
 ; form styling
 [forms]
 formstyle = bootstrap3_inline
-separator = : 
+separator = 
